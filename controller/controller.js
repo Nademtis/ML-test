@@ -16,12 +16,14 @@ export default class Controller {
     }
 
     init() {
+        //code below is for 1 prediction
         const toPredict = tf.tensor2d(this.predictStuff())
         const prediction = this.MLmodel.predict(toPredict);
         prediction.print();
 
+        //code below is for measuring 1000 predictions - write done when done
         this.measurePredictionTime()
-        console.log("done");
+        console.log("done with 1000 predictions");
     }
     predictStuff(){
         //this model takes 7 input
