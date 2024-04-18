@@ -19,6 +19,7 @@ export default class Controller {
         const toPredict = tf.tensor2d(this.predictStuff())
         const prediction = this.MLmodel.predict(toPredict);
         prediction.print();
+
         this.measurePredictionTime()
         console.log("done");
     }
@@ -33,16 +34,16 @@ export default class Controller {
         const toPredict = tf.tensor2d(this.predictStuff());
 
         // Perform 1000 predictions and measure the time
-        //const startTime = performance.now();
+        const startTime = performance.now();
         for (let i = 0; i < 1000; i++) {
             const prediction = this.MLmodel.predict(toPredict);
             // Note: You may want to do something with each prediction to ensure realistic timing.
             // For the sake of measuring, printing is enough.
             //prediction.print();
         }
-        //const endTime = performance.now();
-        //const totalTime = endTime - startTime;
-        //console.log("Total time for 1000 predictions:", totalTime, "milliseconds");
+        const endTime = performance.now();
+        const totalTime = endTime - startTime;
+        console.log("Total time for 1000 predictions:", totalTime, "milliseconds");
     }
 
 }
