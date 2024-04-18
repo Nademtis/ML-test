@@ -12,7 +12,7 @@ export default class Controller {
         this.MLmodel = undefined
     }
     async initMLModel(){
-        this.MLmodel = await tf.loadLayersModel('../ML/model.json');
+        this.MLmodel = await tf.loadLayersModel('./ML/model.json');
     }
 
     init() {
@@ -20,6 +20,7 @@ export default class Controller {
         const prediction = this.MLmodel.predict(toPredict);
         prediction.print();
         this.measurePredictionTime()
+        console.log("done");
     }
     predictStuff(){
         //this model takes 7 input
@@ -37,7 +38,7 @@ export default class Controller {
             const prediction = this.MLmodel.predict(toPredict);
             // Note: You may want to do something with each prediction to ensure realistic timing.
             // For the sake of measuring, printing is enough.
-            prediction.print();
+            //prediction.print();
         }
         //const endTime = performance.now();
         //const totalTime = endTime - startTime;
