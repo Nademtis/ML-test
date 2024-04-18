@@ -6,6 +6,6 @@ window.addEventListener("load", start);
 
 const controller = new Controller()
 async function start() {
-    await controller.initMLModel(); // Wait for the model to be initialized
-    controller.init(); // Then initialize the controller
+    await controller.initMLModel(); // init ML model
+    controller.init();              // controller init
 }
