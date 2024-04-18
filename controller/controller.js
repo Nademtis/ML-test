@@ -14,7 +14,7 @@ export default class Controller {
     async initMLModel() {
         this.MLmodel = await tf.loadLayersModel('./ML/model.json');
 
-        //tf.setBackend('webgl');   // change model to utilize GPU
+        //tf.setBackend('webgl');       // change model to utilize GPU
         tf.setBackend('cpu');       // change model to unilize CPU
     }
 
@@ -36,10 +36,13 @@ export default class Controller {
     }
     measurePredictionTime() {
         const toPredict = tf.tensor2d(this.predictStuff());
+        //might need to dispose() the tf.tensors - so toPredict.dispose()
+
+        const amountOfPredictions = 1000
 
         // Perform 1000 predictions and measure time elapsed
         const startTime = performance.now();
-        for (let i = 0; i < 1000; i++) {
+        for (let i = 0; i < amountOfPredictions; i++) {
             const prediction = this.MLmodel.predict(toPredict);
             //prediction.print();
         }
@@ -47,6 +50,6 @@ export default class Controller {
         //print time
         const endTime = performance.now();
         const totalTime = endTime - startTime;
-        console.log("Total time for 1000 predictions:", totalTime, " in milliseconds my guy");
+        console.log("Total time for " + amountOfPredictions + " predictions:", totalTime, " in milliseconds my guy");
     }
 }
